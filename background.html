@@ -1,0 +1,19 @@
+<html>
+<head>
+<script>
+  var words = {};
+  // Called when the user clicks on the browser action.
+  chrome.browserAction.onClicked.addListener(function(tab) {
+      chrome.tabs.getSelected(null, function(tab) {
+        chrome.tabs.sendRequest(tab.id, {command: "toggle", words: words[tab.id]});
+      });
+  });
+  
+  chrome.extension.onRequest.addListener(function(request, sender, sendResponse) {
+    if (sender.tab && request.words) {
+      words[sender.tab.id] = request.words;
+    };
+  });
+</script>
+</head>
+</html>

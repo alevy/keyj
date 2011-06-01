@@ -1,0 +1,20 @@
+{
+  "name": "KeyJ",
+  "version": "1.1.1",
+  "description": "Highlights keyworks from Google searches in web pages.",
+  "permissions": [
+    "http://*/*",
+    "tabs"
+  ],
+  "browser_action": {
+    "default_icon": "images/icon.gif"
+  },
+  "background_page": "background.html",
+  "content_scripts": [
+    {
+      "matches": ["http://*/*"],
+      "js": ["jquery.js", "jquery.highlight.js", "keyj.js", "content.js"],
+      "css": ["keyj.css"]
+    }
+  ]
+}
