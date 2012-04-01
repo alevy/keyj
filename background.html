@@ -9,9 +9,21 @@
       });
   });
   
+  var extract_words = function(url) {
+    var matches = url.match("\\?.*q=([^&]*)");
+    if (matches) {
+      return matches[1].split(/\+|%20/);
+    } else {
+      return [];
+    }
+  }
+  
   chrome.extension.onRequest.addListener(function(request, sender, sendResponse) {
-    if (sender.tab && request.words) {
-      words[sender.tab.id] = request.words;
+    if (sender.tab && request.words) {      
+      xtracted = extract_words(sender.tab.url);
+      if (xtracted.length > 0)
+        words[sender.tab.id] = xtracted
+      console.log("heard: " + xtracted.length)
     };
   });
 </script>

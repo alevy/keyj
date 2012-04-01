@@ -1,9 +1,9 @@
-chrome.extension.sendRequest({words: extract_words(document.referrer)});
+chrome.extension.sendRequest({words: true});
 
 highlighted = false;
 
 chrome.extension.onRequest.addListener(function(request, sender, sendResponse) {
-    if (!sender.tab && request.command == "toggle") {
+    if (request.command == "toggle") {
       if (!highlighted) {
         highlight(request.words);
       } else {

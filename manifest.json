@@ -12,7 +12,7 @@
   "background_page": "background.html",
   "content_scripts": [
     {
-      "matches": ["http://*/*"],
+      "matches": ["http://*/*", "https://*/*"],
       "js": ["jquery.js", "jquery.highlight.js", "keyj.js", "content.js"],
       "css": ["keyj.css"]
     }
